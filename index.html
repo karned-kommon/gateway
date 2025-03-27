@@ -97,12 +97,64 @@
         .sample {
             border: 1px solid #0A84FF;
         }
+
+        #developers {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #developers h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .developer-card {
+            display: inline-block;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .developer-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .developer-card h3 {
+            margin: 10px 0 5px;
+            color: #0A84FF;
+        }
+
+        .developer-card .links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .developer-card .links a {
+            color: #0A84FF;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .developer-card .links a:hover {
+            color: #005BB5;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <h1 style="color: white; margin: 0;">REKIPE API Documentation</h1>
+            <h1 style="color: white; margin: 0;">Rekipe</h1>
+            <h2 style="color: white; margin: 0;">API Documentation</h1>
         </div>
     </header>
 
@@ -163,5 +215,35 @@
             </div>
         </section>
     </main>
+
+    <footer>
+        <section id="developers">
+            <h2>Meet the Developers</h2>
+            <div class="developer-card">
+                <img src="https://via.placeholder.com/100" alt="Killian">
+                <h3>Killian</h3>
+                <div class="links">
+                    <a target="_blank" href="https://github.com/killian"><span>🐙</span></a>
+                    <a target="_blank" href="https://linkedin.com/in/killian"><span>🔗</span></a>
+                </div>
+            </div>
+            <div class="developer-card">
+                <img src="https://via.placeholder.com/100" alt="Sébastien">
+                <h3>Sébastien</h3>
+                <div class="links">
+                    <a target="_blank" href="https://github.com/sebastien"><span>🐙</span></a>
+                    <a target="_blank" href="https://linkedin.com/in/sebastien"><span>🔗</span></a>
+                </div>
+            </div>
+            <div class="developer-card">
+                <img src="https://via.placeholder.com/100" alt="Mari">
+                <h3>Mari</h3>
+                <div class="links">
+                    <a target="_blank" href="https://github.com/mari"><span>🐙</span></a>
+                    <a target="_blank" href="https://linkedin.com/in/mari"><span>🔗</span></a>
+                </div>
+            </div>
+        </section>
+    </footer>
 </body>
 </html>
