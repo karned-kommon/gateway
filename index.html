@@ -42,49 +42,56 @@
         }
 
         .api-service {
-            background-color: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            text-align: center;
-            transition: box-shadow 0.2s ease;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .api-service:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         .api-service h3 {
             color: #0A84FF;
-            margin: 5px 0;
+            margin-bottom: 10px;
+            font-size: 1.5em;
         }
 
         .api-service p {
-            font-size: 0.85em;
-            margin: 5px 0;
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #555;
         }
 
-        .api-service p:first-of-type {
-            min-height: 100px;
-            padding-top: 15px;
+        .api-service .links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .learn-more-btn {
-            display: inline-block;
-            padding: 3px 5px;
-            background-color: white;
-            color: #0A84FF;
+        .api-service .links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            color: white;
+            background-color: #005BB5;
             border-radius: 4px;
             text-decoration: none;
+            font-size: 0.9em;
             transition: background-color 0.2s ease;
-            font-size: small;
-            font-weight: lighter;
-            border: 1px solid #0A84FF;
         }
 
-        .learn-more-btn:hover {
-            background-color: #0A84FF;
-            color: white;
+        .api-service .links a:hover {
+            background-color: #005BB5;
+        }
+
+        .api-service .links a span {
+            font-size: 1.2em;
         }
 
         .sample {
@@ -95,43 +102,65 @@
 <body>
     <header>
         <div class="header-container">
-            REKIPE API Documentation
+            <h1 style="color: white; margin: 0;">REKIPE API Documentation</h1>
         </div>
     </header>
 
     <main>
         <section id="api-services">
-
+            <div class="api-service">
+                <h3>/auth</h3>
+                <p>Service de génération de token. Obtenez des tokens pour vos applications.</p>
+                <div class="links">
+                    <a target="_blank" href="/auth/docs">
+                        <span>📜</span> Swagger
+                    </a>
+                    <a target="_blank" href="https://github.com/karned-kommon/api-auth">
+                        <span>🐙</span> GitHub
+                    </a>
+                    <!--
+                    <a target="_blank" href="https://docs.yourdomain.com/auth">
+                        <span>📖</span> Documentation
+                    </a>
+                    -->
+                </div>
+            </div>
+            
             <div class="api-service">
                 <h3>/licence</h3>
                 <p>Service de gestion des licences. Obtenez des informations sur vos licences.</p>
-                <hr>
-                <p>
-                    <h6>Documentations</h6>
-                    <a target="licence" href="/licence/docs" class="learn-more-btn">Swagger</a>
-                </p>
+                <div class="links">
+                    <a target="_blank" href="/licence/docs">
+                        <span>📜</span> Swagger
+                    </a>
+                    <a target="_blank" href="https://github.com/karned-kommon/api-license">
+                        <span>🐙</span> GitHub
+                    </a>
+                    <!--
+                    <a target="_blank" href="https://docs.yourdomain.com/licence">
+                        <span>📖</span> Documentation
+                    </a>
+                    -->
+                </div>
             </div>
 
             <div class="api-service">
                 <h3>/recipe</h3>
                 <p>Service de gestion des recettes. Obtenez des informations sur vos recettes.</p>
-                <hr>
-                <p>
-                    <h6>Documentations</h6>
-                    <a target="recipe" href="/recipe/docs" class="learn-more-btn">Swagger</a>
-                </p>
+                <div class="links">
+                    <a target="_blank" href="/recipe/docs">
+                        <span>📜</span> Swagger
+                    </a>
+                    <a target="_blank" href="https://github.com/karned-rekipe/api-recipe">
+                        <span>🐙</span> GitHub
+                    </a>
+                    <!--
+                    <a target="_blank" href="https://docs.yourdomain.com/recipe">
+                        <span>📖</span> Documentation
+                    </a>
+                    -->
+                </div>
             </div>
-
-            <div class="api-service">
-                <h3>/auth</h3>
-                <p>Service de génération de token. Obtenez des tokens pour vos applications.</p>
-                <hr>
-                <p>
-                    <h6>Documentations</h6>
-                    <a target="auth" href="/auth/docs" class="learn-more-btn">Swagger</a>
-                </p>
-            </div>
-
         </section>
     </main>
 </body>
