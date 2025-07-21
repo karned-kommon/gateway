@@ -5,225 +5,383 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karned Gateway</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
-            background-color: #f4f4f4;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
 
         header {
-            background-color: #0A84FF; /* or any color that matches your brand */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             width: 100%;
-            padding: 10px 0;
+            padding: 20px 0;
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 40px;
             margin: auto;
+            max-width: 1200px;
         }
 
         .logo {
             height: 50px; 
             text-align: left;
+        }
 
+        .section-header {
+            text-align: center;
+            margin: 40px 0 30px;
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 2.5em;
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-header p {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            opacity: 0.9;
         }
 
         #api-services {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .api-section {
+            margin-bottom: 60px;
+        }
+
+        .api-section h3 {
+            color: white;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .api-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .api-service {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 30px;
             text-align: left;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .api-service:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 1);
         }
 
-        .api-service h3 {
-            color: #0A84FF;
-            margin-bottom: 10px;
-            font-size: 1.5em;
+        .api-service h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            font-weight: 600;
         }
 
         .api-service p {
             font-size: 1em;
-            margin-bottom: 15px;
-            color: #555;
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.6;
         }
 
         .api-service .links {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .api-service .links a {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 8px 12px;
+            gap: 8px;
+            padding: 10px 16px;
             color: white;
-            background-color: #005BB5;
-            border-radius: 4px;
+            border-radius: 8px;
             text-decoration: none;
             font-size: 0.9em;
-            transition: background-color 0.2s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .api-service .links a.swagger {
+            background: linear-gradient(135deg, #85D1CE 0%, #4E9F9D 100%);
+        }
+
+        .api-service .links a.github {
+            background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+        }
+
+        .api-service .links a.docs {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .api-service .links a:hover {
-            background-color: #005BB5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
 
         .api-service .links a span {
-            font-size: 1.2em;
-        }
-
-        .sample {
-            border: 1px solid #0A84FF;
+            font-size: 1.1em;
         }
 
         #developers {
-            background-color: #f9f9f9;
-            padding: 20px;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            padding: 60px 20px;
             text-align: center;
         }
 
         #developers h2 {
-            color: #333;
-            margin-bottom: 20px;
+            color: white;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .developers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .developer-card {
-            display: inline-block;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            margin: 10px;
-            width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 30px;
             text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .developer-card img {
-            width: 100px;
-            height: 100px;
+        .developer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .developer-card .avatar {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin-bottom: 10px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: bold;
+            color: white;
+            border: 4px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .developer-card:hover .avatar {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .developer-card .avatar.killian {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .developer-card .avatar.mari {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .developer-card .avatar.sebastien {
+            background: linear-gradient(135deg, #4E9F9D 0%, #85D1CE 100%);
         }
 
         .developer-card h3 {
-            margin: 10px 0 5px;
-            color: #0A84FF;
+            margin: 15px 0 10px;
+            color: #667eea;
+            font-size: 1.4em;
+            font-weight: 600;
         }
 
         .developer-card .links {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .developer-card .links a {
-            color: #0A84FF;
-            font-size: 1.2em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
             text-decoration: none;
-            transition: color 0.2s ease;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .developer-card .links a.github {
+            background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+            color: white;
+        }
+
+        .developer-card .links a.linkedin {
+            background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
+            color: white;
         }
 
         .developer-card .links a:hover {
-            color: #005BB5;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section-header h2 {
+                font-size: 2em;
+            }
+
+            .api-section h3 {
+                font-size: 1.6em;
+            }
+
+            .api-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .developers-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <h1 style="color: white; margin: 0;">Rekipe</h1>
-            <h2 style="color: white; margin: 0;">API Documentation</h1>
+            <h1 style="color: white; margin: 0; font-weight: 700;">Karned Gateway</h1>
+            <h2 style="color: white; margin: 0; font-weight: 300; opacity: 0.9;">API Documentation</h2>
         </div>
     </header>
 
+    <div class="section-header">
+        <h2>API Services</h2>
+        <p>Découvrez nos APIs pour vos applications</p>
+    </div>
+
     <main>
         <section id="api-services">
-            <div class="api-service">
-                <h3>/auth</h3>
-                <p>Service de génération de token. Obtenez des tokens pour vos applications.</p>
-                <div class="links">
-                    <a target="_blank" href="/auth/docs">
-                        <span>📜</span> Swagger
-                    </a>
-                    <a target="_blank" href="https://github.com/karned-kommon/api-auth">
-                        <span>🐙</span> GitHub
-                    </a>
-                    <!--
-                    <a target="_blank" href="https://docs.yourdomain.com/auth">
-                        <span>📖</span> Documentation
-                    </a>
-                    -->
-                </div>
-            </div>
-            
-            <div class="api-service">
-                <h3>/license</h3>
-                <p>Service de gestion des licences. Obtenez des informations sur vos licences.</p>
-                <div class="links">
-                    <a target="_blank" href="/license/docs">
-                        <span>📜</span> Swagger
-                    </a>
-                    <a target="_blank" href="https://github.com/karned-kommon/api-license">
-                        <span>🐙</span> GitHub
-                    </a>
-                    <!--
-                    <a target="_blank" href="https://docs.yourdomain.com/licence">
-                        <span>📖</span> Documentation
-                    </a>
-                    -->
+            <!-- Section Kommon -->
+            <div class="api-section">
+                <h3>🔧 Kommon Services</h3>
+                <div class="api-grid">
+                    <div class="api-service">
+                        <h4>/auth</h4>
+                        <p>Service de génération de token. Obtenez des tokens pour vos applications.</p>
+                        <div class="links">
+                            <a class="swagger" target="_blank" href="/auth/docs">
+                                <span>📜</span> Swagger
+                            </a>
+                            <a class="github" target="_blank" href="https://github.com/karned-kommon/api-auth">
+                                <span>🐙</span> GitHub
+                            </a>
+                            <a class="docs" target="_blank" href="https://karned-kommon.github.io/api-auth/">
+                                <span>📖</span> Documentation
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="api-service">
+                        <h4>/license</h4>
+                        <p>Service de gestion des licences. Obtenez des informations sur vos licences.</p>
+                        <div class="links">
+                            <a class="swagger" target="_blank" href="/license/docs">
+                                <span>📜</span> Swagger
+                            </a>
+                            <a class="github" target="_blank" href="https://github.com/karned-kommon/api-license">
+                                <span>🐙</span> GitHub
+                            </a>
+                            <a class="docs" target="_blank" href="https://karned-kommon.github.io/api-license/">
+                                <span>📖</span> Documentation
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="api-service">
+                        <h4>/credential</h4>
+                        <p>Service de gestion des credentials. Obtenez et gérez vos informations d'identification.</p>
+                        <div class="links">
+                            <a class="swagger" target="_blank" href="/credential/docs">
+                                <span>📜</span> Swagger
+                            </a>
+                            <a class="github" target="_blank" href="https://github.com/karned-kommon/api-credential">
+                                <span>🐙</span> GitHub
+                            </a>
+                            <a class="docs" target="_blank" href="https://karned-kommon.github.io/api-credential/">
+                                <span>📖</span> Documentation
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="api-service">
-                <h3>/recipe</h3>
-                <p>Service de gestion des recettes. Obtenez des informations sur vos recettes.</p>
-                <div class="links">
-                    <a target="_blank" href="/recipe/docs">
-                        <span>📜</span> Swagger
-                    </a>
-                    <a target="_blank" href="https://github.com/karned-rekipe/api-recipe">
-                        <span>🐙</span> GitHub
-                    </a>
-                    <!--
-                    <a target="_blank" href="https://docs.yourdomain.com/recipe">
-                        <span>📖</span> Documentation
-                    </a>
-                    -->
-                </div>
-            </div>
-
-            <div class="api-service">
-                <h3>/credential</h3>
-                <p>Service de gestion des credentials. Obtenez et gérez vos informations d'identification.</p>
-                <div class="links">
-                    <a target="_blank" href="/credential/docs">
-                        <span>📜</span> Swagger
-                    </a>
-                    <a target="_blank" href="https://github.com/karned-kommon/api-credential">
-                        <span>🐙</span> GitHub
-                    </a>
+            <!-- Section Rekipe -->
+            <div class="api-section">
+                <h3>🍳 Rekipe Services</h3>
+                <div class="api-grid">
+                    <div class="api-service">
+                        <h4>/recipe</h4>
+                        <p>Service de gestion des recettes. Obtenez des informations sur vos recettes.</p>
+                        <div class="links">
+                            <a class="swagger" target="_blank" href="/recipe/docs">
+                                <span>📜</span> Swagger
+                            </a>
+                            <a class="github" target="_blank" href="https://github.com/karned-rekipe/api-recipe">
+                                <span>🐙</span> GitHub
+                            </a>
+                            <a class="docs" target="_blank" href="https://karned-rekipe.github.io/api-recipe/">
+                                <span>📖</span> Documentation
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -232,28 +390,42 @@
     <footer>
         <section id="developers">
             <h2>Meet the Developers</h2>
-            <div class="developer-card">
-                <img src="https://via.placeholder.com/100" alt="Killian">
-                <h3>Killian</h3>
-                <div class="links">
-                    <a target="_blank" href="https://github.com/killian"><span>🐙</span></a>
-                    <a target="_blank" href="https://linkedin.com/in/killian"><span>🔗</span></a>
+            <div class="developers-grid">
+                <div class="developer-card">
+                    <div class="avatar killian">K</div>
+                    <h3>Killian Kopp</h3>
+                    <div class="links">
+                        <a class="github" target="_blank" href="https://github.com/killian" title="GitHub Profile">
+                            <span>🐙</span>
+                        </a>
+                        <a class="linkedin" target="_blank" href="https://www.linkedin.com/in/killian-kopp/" title="LinkedIn Profile">
+                            <span>🔗</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="developer-card">
-                <img src="https://via.placeholder.com/100" alt="Sébastien">
-                <h3>Sébastien</h3>
-                <div class="links">
-                    <a target="_blank" href="https://github.com/sebastien"><span>🐙</span></a>
-                    <a target="_blank" href="https://linkedin.com/in/sebastien"><span>🔗</span></a>
+                <div class="developer-card">
+                    <div class="avatar mari">M</div>
+                    <h3>Mari Lehoux</h3>
+                    <div class="links">
+                        <a class="github" target="_blank" href="https://github.com/mari" title="GitHub Profile">
+                            <span>🐙</span>
+                        </a>
+                        <a class="linkedin" target="_blank" href="https://www.linkedin.com/in/mari-lehoux/" title="LinkedIn Profile">
+                            <span>🔗</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="developer-card">
-                <img src="https://via.placeholder.com/100" alt="Mari">
-                <h3>Mari</h3>
-                <div class="links">
-                    <a target="_blank" href="https://github.com/mari"><span>🐙</span></a>
-                    <a target="_blank" href="https://linkedin.com/in/mari"><span>🔗</span></a>
+                <div class="developer-card">
+                    <div class="avatar sebastien">S</div>
+                    <h3>Sébastien Héligon</h3>
+                    <div class="links">
+                        <a class="github" target="_blank" href="https://github.com/sebastien" title="GitHub Profile">
+                            <span>🐙</span>
+                        </a>
+                        <a class="linkedin" target="_blank" href="https://www.linkedin.com/in/s%C3%A9bastien-h%C3%A9ligon/" title="LinkedIn Profile">
+                            <span>🔗</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
