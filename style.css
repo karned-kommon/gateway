@@ -1,0 +1,400 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --muted: #6b7280; /* gris */
+    --text: #0f172a; /* presque noir */
+    --accent-1: #00cf33; /* couleur primaire */
+    --accent-2: #0c842b; /* couleur secondaire */
+    --glass: rgba(255, 255, 255, 0.6);
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --max-width: 1200px;
+    --container-pad: 24px;
+    --elevation: 0 10px 30px rgba(2, 6, 23, 0.08);
+    font-synthesis: none;
+}
+
+/* Reset + body */
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #f6f9fb 0%, #ffffff 60%);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Header */
+header {
+    background: black;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+.header-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 18px var(--container-pad);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+    display: block;
+    font-weight: 700;
+    color: var(--accent-2);
+    letter-spacing: 0.2px;
+    font-size: 1.05rem;
+}
+
+header h1, header h2 {
+    margin: 0;
+    line-height: 1;
+}
+
+header h1 {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+header h2 {
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    opacity: 0.95;
+}
+
+/* Hero / Section header */
+.section-header {
+    max-width: var(--max-width);
+    margin: 40px auto 20px;
+    padding: 0 var(--container-pad);
+    text-align: left;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin: 0 0 8px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.section-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+/* Main content container */
+#api-services {
+    max-width: var(--max-width);
+    margin: 18px auto 48px;
+    padding: 0 var(--container-pad);
+}
+
+/* Section titles */
+.api-section {
+    margin-bottom: 48px;
+}
+
+.api-section h3 {
+    margin: 0 0 20px;
+    font-size: 1.25rem;
+    color: var(--accent-2);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.api-section h3 svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+/* Grid / cards */
+.api-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.api-service {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--elevation);
+    border: 1px solid rgba(2, 6, 23, 0.04);
+    transition: transform .22s ease, box-shadow .22s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 150px;
+}
+
+.api-service:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 207, 51, 0.09);
+}
+
+/* Service headings and text */
+.api-service h4 {
+    margin: 0;
+    color: var(--accent-1);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.api-service p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* Links row */
+.api-service .links {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.api-service .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--accent-1);
+    background: transparent;
+    border: 2px solid var(--accent-1);
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+    transition: transform .14s ease, opacity .14s ease, background .14s ease, color .14s ease;
+}
+
+.api-service .links a:hover {
+    transform: translateY(-3px);
+    opacity: 1.0;
+    box-shadow: 0 8px 25px rgba(2, 6, 23, 0.15);
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    color: var(--surface);
+}
+
+/* Buttons color variants - now outline by default */
+.api-service .links a.swagger {
+    /* outline styling inherited from base rule */
+}
+
+.api-service .links a.github {
+    /* outline styling inherited from base rule */
+}
+
+.api-service .links a.docs {
+    /* outline styling inherited from base rule */
+}
+
+/* Small icon inside link */
+.api-service .links a span {
+    font-size: 1.02rem;
+    display: inline-block;
+}
+
+/* Storage special card (if placed outside grid) */
+#api-services > .api-service:last-child {
+    max-width: 720px;
+    margin: 24px auto 0;
+}
+
+/* Developers section (footer) */
+#developers {
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    padding: 56px var(--container-pad);
+    border-top: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+#developers .developers-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+#developers h2 {
+    margin: 0 0 28px;
+    font-size: 1.8rem;
+    color: var(--text);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* Grid of devs */
+.developers-grid {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+/* Card */
+.developer-card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 22px;
+    text-align: center;
+    border: 1px solid rgba(2, 6, 23, 0.04);
+    box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+    transition: transform .18s ease, box-shadow .18s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.developer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 44px rgba(2, 6, 23, 0.09);
+}
+
+/* Avatar */
+.developer-card .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 999px;
+    overflow: hidden;
+    display: block;
+    border: 4px solid rgba(14, 165, 161, 0.12);
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-swagger {
+    display: inline-flex;
+}
+
+.icon-swagger svg {
+    width: 36px;
+    height: 36px;
+}
+
+.developer-card .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Name and links */
+.developer-card h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.developer-card .links {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.icon-doc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.icon-doc:hover {
+    color: #0a84ff;
+    transform: translateY(-2px);
+    transition: .14s;
+}
+
+.developer-card .links a {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--surface);
+    font-size: 1.05rem;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+}
+
+.developer-card .links a.github {
+    background: #0f172a;
+}
+
+.developer-card .links a.linkedin {
+    background: linear-gradient(90deg, #0077b5, #005885);
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+    .section-header {
+        text-align: left;
+        padding: 0 20px;
+    }
+
+    header h1 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .header-container {
+        padding: 12px 16px;
+        gap: 8px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .api-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .developers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Utility: subtle footer spacing */
+footer {
+    margin-top: 40px;
+}
