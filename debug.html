@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gateway Debug Info</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .info { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+        .error { background: #ffeeee; border: 1px solid #ff0000; }
+        .success { background: #eeffee; border: 1px solid #00ff00; }
+    </style>
+</head>
+<body>
+    <h1>Gateway Debug Information</h1>
+    
+    <div class="info">
+        <h2>Current URL Info</h2>
+        <p><strong>Protocol:</strong> <span id="protocol"></span></p>
+        <p><strong>Host:</strong> <span id="host"></span></p>
+        <p><strong>Port:</strong> <span id="port"></span></p>
+        <p><strong>User Agent:</strong> <span id="userAgent"></span></p>
+    </div>
+    
+    <div class="info">
+        <h2>SSL/TLS Status</h2>
+        <p><strong>Is HTTPS:</strong> <span id="isHttps"></span></p>
+        <p><strong>Mixed Content:</strong> <span id="mixedContent"></span></p>
+    </div>
+    
+    <div class="info">
+        <h2>API Test</h2>
+        <button onclick="testApi()">Test /gate endpoint</button>
+        <div id="apiResult"></div>
+    </div>
+    
+    <script>
+        // Populate page info
+        document.getElementById('protocol').textContent = window.location.protocol;
+        document.getElementById('host').textContent = window.location.hostname;
+        document.getElementById('port').textContent = window.location.port || 'default';
+        document.getElementById('userAgent').textContent = navigator.userAgent;
+        document.getElementById('isHttps').textContent = window.location.protocol === 'https:' ? 'Yes' : 'No';
+        
+        // Check for mixed content
+        const isMixed = window.location.protocol === 'https:' && 
+                       (document.querySelector('script[src^="http:"]') || 
+                        document.querySelector('img[src^="http:"]') ||
+                        document.querySelector('link[href^="http:"]'));
+        document.getElementById('mixedContent').textContent = isMixed ? 'Detected' : 'None detected';
+        
+        // API test function
+        function testApi() {
+            const resultDiv = document.getElementById('apiResult');
+            resultDiv.innerHTML = 'Testing...';
+            
+            fetch('/gate')
+                .then(response => {
+                    resultDiv.innerHTML = `<div class="success">
+                        <strong>Success!</strong><br>
+                        Status: ${response.status}<br>
+                        Headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2)}
+                    </div>`;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `<div class="error">
+                        <strong>Error:</strong> ${error.message}
+                    </div>`;
+                });
+        }
+        
+        // Auto-test on mobile
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            document.body.insertAdjacentHTML('afterbegin', 
+                '<div class="info"><strong>Mobile device detected</strong></div>');
+        }
+    </script>
+</body>
+</html>
