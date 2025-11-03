@@ -8,15 +8,15 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     
-    # Headers de sécurité pour les navigateurs mobiles
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    # Headers de sécurité (déplacés dans les locations pour éviter les conflits K8s)
+    # add_header X-Frame-Options "SAMEORIGIN" always;
+    # add_header X-Content-Type-Options "nosniff" always;
+    # add_header X-XSS-Protection "1; mode=block" always;
+    # add_header Referrer-Policy "strict-origin-when-cross-origin" always;
     
-    # Gestion du HTTPS depuis le reverse proxy K8s
-    real_ip_header X-Forwarded-For;
-    set_real_ip_from 0.0.0.0/0;
+    # Gestion du HTTPS depuis le reverse proxy K8s (commenté pour éviter les conflits)
+    # real_ip_header X-Forwarded-For;
+    # set_real_ip_from 10.0.0.0/8;
 
     set $cors_origin "";
     if ($http_origin ~* ($ALLOWED_ORIGINS)) {
@@ -26,8 +26,7 @@ server {
     # Route pour les fichiers CSS et JS
     location ~* \.(css|js|jpg|jpeg|png|gif|ico|svg)$ {
         root /usr/share/nginx/html;
-        expires 1y;
-        add_header Cache-Control "public, immutable";
+        add_header Cache-Control "public, max-age=3600" always;
         add_header 'Access-Control-Allow-Origin' '$cors_origin' always;
     }
 
@@ -64,9 +63,5 @@ server {
 
         proxy_pass http://10.0.0.134/gate;
         client_max_body_size 10M;
-        
-        # Préserver les headers du reverse proxy K8s
-        proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
-        proxy_set_header X-Forwarded-Port $http_x_forwarded_port;
     }
 }

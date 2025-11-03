@@ -8,6 +8,9 @@ COPY index.html /usr/share/nginx/html/index.html
 COPY debug.html /usr/share/nginx/html/debug.html
 COPY style.css /usr/share/nginx/html/style.css
 COPY images/ /usr/share/nginx/html/images/
+COPY debug-nginx.sh /usr/local/bin/debug-nginx.sh
+
+RUN chmod +x /usr/local/bin/debug-nginx.sh
 
 EXPOSE 80
 
